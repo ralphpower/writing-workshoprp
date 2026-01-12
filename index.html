@@ -1,0 +1,1291 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write Your First Book | Leadership Writing Workshop</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --ink: #1a1a1a;
+            --paper: #faf8f4;
+            --accent: #c44536;
+            --shadow: #e8e4dc;
+            --muted: #6b6b6b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Source Sans 3', sans-serif;
+            background: var(--paper);
+            color: var(--ink);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Hero Section */
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            padding: 4rem 0;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--shadow) 0%, transparent 100%);
+            opacity: 0.3;
+            z-index: 0;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .date-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            margin-bottom: 2rem;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(3rem, 8vw, 6.5rem);
+            font-weight: 900;
+            line-height: 1;
+            margin-bottom: 1.5rem;
+            animation: fadeInUp 1s ease-out 0.2s both;
+        }
+
+        .hero-subtitle {
+            font-size: clamp(1.25rem, 3vw, 1.875rem);
+            color: var(--muted);
+            margin-bottom: 3rem;
+            max-width: 700px;
+            font-weight: 300;
+            animation: fadeInUp 1s ease-out 0.4s both;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: var(--ink);
+            color: var(--paper);
+            padding: 1.25rem 3rem;
+            font-size: 1.125rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeInUp 1s ease-out 0.6s both;
+        }
+
+        .cta-button::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: var(--accent);
+            transition: left 0.4s ease;
+            z-index: -1;
+        }
+
+        .cta-button:hover::before {
+            left: 0;
+        }
+
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        }
+
+        /* Credibility Section */
+        .credibility-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .credibility-grid {
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .lead-text {
+            font-size: 1.25rem;
+            color: var(--muted);
+            margin-bottom: 2rem;
+            line-height: 1.8;
+        }
+
+        .credentials-list {
+            list-style: none;
+            display: grid;
+            gap: 1rem;
+        }
+
+        .credentials-list li {
+            padding-left: 2rem;
+            position: relative;
+            font-size: 1.125rem;
+        }
+
+        .credentials-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.25rem;
+        }
+
+        .credibility-stats {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .stat-box {
+            text-align: center;
+            padding: 2rem;
+            background: var(--paper);
+            border-left: 4px solid var(--accent);
+        }
+
+        .stat-number {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--accent);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--muted);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            font-weight: 600;
+        }
+
+        /* Countdown Section */
+        .countdown-section {
+            background: var(--ink);
+            color: white;
+            padding: 4rem 0;
+            border-top: 4px solid var(--accent);
+            border-bottom: 4px solid var(--accent);
+        }
+
+        .countdown-content {
+            text-align: center;
+        }
+
+        .spots-badge {
+            display: inline-block;
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            animation: pulse 2s ease-in-out infinite;
+        }
+
+        @keyframes pulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .countdown-content h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 4vw, 3rem);
+            margin-bottom: 2rem;
+            color: white;
+        }
+
+        .countdown-timer {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .time-unit {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 100px;
+        }
+
+        .time-value {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+            color: var(--accent);
+            text-shadow: 0 0 20px rgba(196, 69, 54, 0.3);
+        }
+
+        .time-label {
+            font-size: 0.875rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-top: 0.5rem;
+            color: rgba(255, 255, 255, 0.7);
+        }
+
+        .urgency-subtext {
+            margin-top: 2rem;
+            font-size: 1.125rem;
+            color: rgba(255, 255, 255, 0.9);
+            font-weight: 600;
+        }
+
+        /* For Section */
+        .for-section {
+            padding: 6rem 0;
+            background: white;
+            position: relative;
+        }
+
+        .section-label {
+            font-size: 0.875rem;
+            font-weight: 600;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2.5rem, 5vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 3rem;
+            line-height: 1.2;
+        }
+
+        .for-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .for-card {
+            padding: 2.5rem;
+            background: var(--paper);
+            border-left: 4px solid var(--accent);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .for-card:hover {
+            transform: translateX(10px);
+            box-shadow: -10px 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .for-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .for-card p {
+            color: var(--muted);
+            font-size: 1rem;
+        }
+
+        /* What You'll Learn */
+        .learn-section {
+            padding: 6rem 0;
+            background: var(--ink);
+            color: var(--paper);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .learn-section::before {
+            content: '"';
+            position: absolute;
+            top: -5rem;
+            right: 2rem;
+            font-family: 'Playfair Display', serif;
+            font-size: 30rem;
+            font-weight: 900;
+            opacity: 0.03;
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .learn-section .section-label {
+            color: var(--accent);
+        }
+
+        .learn-section h2 {
+            color: var(--paper);
+        }
+
+        .learn-list {
+            list-style: none;
+            margin-top: 3rem;
+            display: grid;
+            gap: 2rem;
+            max-width: 900px;
+        }
+
+        .learn-list li {
+            padding-left: 3rem;
+            position: relative;
+            font-size: 1.25rem;
+            line-height: 1.8;
+            transition: transform 0.3s ease;
+        }
+
+        .learn-list li:hover {
+            transform: translateX(10px);
+        }
+
+        .learn-list li::before {
+            content: '→';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-size: 1.5rem;
+            font-weight: 700;
+        }
+
+        /* Details Section */
+        .details-section {
+            padding: 6rem 0;
+            background: var(--paper);
+        }
+
+        .details-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .detail-item {
+            text-align: center;
+        }
+
+        .detail-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+
+        .detail-item h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.25rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+        }
+
+        .detail-item p {
+            color: var(--muted);
+            font-size: 1.125rem;
+        }
+
+        /* Pricing Section */
+        .pricing-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .pricing-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+            align-items: start;
+        }
+
+        .pricing-card {
+            background: var(--paper);
+            padding: 2.5rem;
+            border: 2px solid transparent;
+            position: relative;
+            transition: all 0.4s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .pricing-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.1);
+            border-color: var(--shadow);
+        }
+
+        .pricing-card.featured {
+            background: var(--ink);
+            color: white;
+            transform: scale(1.05);
+            border-color: var(--accent);
+        }
+
+        .pricing-card.featured:hover {
+            transform: scale(1.05) translateY(-8px);
+        }
+
+        .pricing-card.featured .features-list li {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .pricing-card.featured .features-list li::before {
+            color: var(--accent);
+        }
+
+        .pricing-card.featured .pricing-button {
+            background: var(--accent);
+            color: white;
+        }
+
+        .pricing-card.featured .pricing-button:hover {
+            background: white;
+            color: var(--ink);
+        }
+
+        .pricing-card.premium {
+            border: 2px solid var(--accent);
+        }
+
+        .popular-badge {
+            position: absolute;
+            top: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--accent);
+            color: white;
+            padding: 0.5rem 1.5rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+        }
+
+        .price-header {
+            text-align: center;
+            margin-bottom: 2rem;
+            padding-bottom: 2rem;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+        }
+
+        .pricing-card.featured .price-header {
+            border-bottom-color: rgba(255, 255, 255, 0.2);
+        }
+
+        .price-header h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.75rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+        }
+
+        .price {
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            gap: 0.25rem;
+        }
+
+        .currency {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-top: 0.5rem;
+        }
+
+        .amount {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            font-weight: 900;
+            line-height: 1;
+        }
+
+        .features-list {
+            list-style: none;
+            margin-bottom: 2rem;
+            flex-grow: 1;
+        }
+
+        .features-list li {
+            padding: 0.75rem 0;
+            padding-left: 2rem;
+            position: relative;
+            color: var(--muted);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .features-list li:last-child {
+            border-bottom: none;
+        }
+
+        .pricing-card.featured .features-list li {
+            border-bottom-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .features-list li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent);
+            font-weight: 700;
+            font-size: 1.125rem;
+        }
+
+        .features-list li strong {
+            color: var(--ink);
+            font-weight: 600;
+        }
+
+        .pricing-card.featured .features-list li strong {
+            color: white;
+        }
+
+        .pricing-button {
+            display: block;
+            text-align: center;
+            background: var(--ink);
+            color: white;
+            padding: 1rem 2rem;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin-top: auto;
+        }
+
+        .pricing-button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .pricing-button:hover {
+            background: var(--accent);
+            transform: translateY(-2px);
+        }
+
+        .guarantee-box {
+            max-width: 700px;
+            margin: 3rem auto;
+            background: var(--paper);
+            border: 2px solid var(--accent);
+            padding: 2rem;
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .guarantee-icon {
+            font-size: 3rem;
+            flex-shrink: 0;
+        }
+
+        .guarantee-content h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--ink);
+        }
+
+        .guarantee-content p {
+            color: var(--muted);
+            line-height: 1.6;
+        }
+
+        .pricing-note {
+            text-align: center;
+            margin-top: 2rem;
+            color: var(--muted);
+            font-size: 0.875rem;
+            font-style: italic;
+        }
+
+        /* Testimonials Section */
+        .testimonials-section {
+            padding: 6rem 0;
+            background: var(--paper);
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-card {
+            background: white;
+            padding: 2.5rem;
+            position: relative;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .quote-mark {
+            font-family: 'Playfair Display', serif;
+            font-size: 4rem;
+            color: var(--accent);
+            opacity: 0.2;
+            line-height: 1;
+            position: absolute;
+            top: 1rem;
+            left: 1.5rem;
+        }
+
+        .testimonial-text {
+            font-size: 1.125rem;
+            line-height: 1.8;
+            color: var(--ink);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            border-top: 2px solid var(--shadow);
+            padding-top: 1rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.25rem;
+        }
+
+        .testimonial-author strong {
+            font-size: 1.125rem;
+            color: var(--ink);
+        }
+
+        .testimonial-author span {
+            font-size: 0.875rem;
+            color: var(--muted);
+        }
+
+        /* FAQ Section */
+        .faq-section {
+            padding: 6rem 0;
+            background: white;
+        }
+
+        .faq-container {
+            max-width: 800px;
+            margin: 3rem auto 0;
+        }
+
+        .faq-item {
+            border-bottom: 2px solid var(--shadow);
+            margin-bottom: 1rem;
+        }
+
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.5rem 0;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1.125rem;
+            color: var(--ink);
+            transition: color 0.3s ease;
+        }
+
+        .faq-question:hover {
+            color: var(--accent);
+        }
+
+        .faq-toggle {
+            font-size: 2rem;
+            font-weight: 300;
+            color: var(--accent);
+            transition: transform 0.3s ease;
+        }
+
+        .faq-item.active .faq-toggle {
+            transform: rotate(45deg);
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .faq-item.active .faq-answer {
+            max-height: 500px;
+            padding-bottom: 1.5rem;
+        }
+
+        .faq-answer p {
+            color: var(--muted);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        /* CTA Section */
+        .final-cta {
+            padding: 8rem 0;
+            background: var(--accent);
+            color: white;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            color: white;
+            margin-bottom: 2rem;
+        }
+
+        .final-cta .cta-button {
+            background: white;
+            color: var(--accent);
+            margin-top: 2rem;
+        }
+
+        .final-cta .cta-button::before {
+            background: var(--ink);
+        }
+
+        .final-cta .cta-button:hover {
+            color: white;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero {
+                min-height: auto;
+                padding: 3rem 0;
+            }
+
+            .for-grid, .details-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .pricing-card.featured {
+                transform: scale(1);
+            }
+
+            .pricing-card.featured:hover {
+                transform: translateY(-8px);
+            }
+
+            .countdown-timer {
+                gap: 1rem;
+            }
+
+            .time-unit {
+                min-width: 70px;
+            }
+
+            .time-value {
+                font-size: 3rem;
+            }
+
+            .credibility-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+
+            .credibility-stats {
+                grid-template-columns: repeat(3, 1fr);
+                gap: 1rem;
+            }
+
+            .stat-box {
+                padding: 1.5rem 1rem;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .testimonials-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .for-section, .learn-section, .details-section, .pricing-section {
+                padding: 4rem 0;
+            }
+
+            .final-cta {
+                padding: 5rem 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="date-badge">Saturday, January 17, 2026</div>
+                <h1>Write Your<br>First Book</h1>
+                <p class="hero-subtitle">A transformative half-day workshop for leaders ready to turn their expertise into a published work that defines their legacy.</p>
+                <a href="#pricing" class="cta-button">Reserve Your Spot</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Credibility/About Section -->
+    <section class="credibility-section">
+        <div class="container">
+            <div class="credibility-grid">
+                <div class="credibility-content">
+                    <div class="section-label">Your Instructor</div>
+                    <h2>Led by Ralph Advisory</h2>
+                    <p class="lead-text">With years of experience guiding leaders through their publishing journey, I've helped executives and industry experts transform their expertise into published works that establish authority and open doors.</p>
+                    <ul class="credentials-list">
+                        <li>Author of three published books</li>
+                        <li>Coached 50+ leaders through their book development journey</li>
+                        <li>Specializes in leadership and business narratives</li>
+                        <li>Featured speaker on writing and thought leadership</li>
+                    </ul>
+                </div>
+                <div class="credibility-stats">
+                    <div class="stat-box">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Leaders Coached</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">3</div>
+                        <div class="stat-label">Published Books</div>
+                    </div>
+                    <div class="stat-box">
+                        <div class="stat-number">85%</div>
+                        <div class="stat-label">Client Satisfaction</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Countdown Section -->
+    <section class="countdown-section">
+        <div class="container">
+            <div class="countdown-content">
+                <div class="urgency-text">
+                    <span class="spots-badge">Only 3 spots left!</span>
+                    <h2>Workshop starts in:</h2>
+                </div>
+                <div class="countdown-timer" id="countdown">
+                    <div class="time-unit">
+                        <span class="time-value" id="days">0</span>
+                        <span class="time-label">Days</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="hours">0</span>
+                        <span class="time-label">Hours</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="minutes">0</span>
+                        <span class="time-label">Minutes</span>
+                    </div>
+                    <div class="time-unit">
+                        <span class="time-value" id="seconds">0</span>
+                        <span class="time-label">Seconds</span>
+                    </div>
+                </div>
+                <p class="urgency-subtext">⚡ Early bird pricing ends 48 hours before the workshop</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- For Section -->
+    <section class="for-section">
+        <div class="container">
+            <div class="section-label">Who This Is For</div>
+            <h2>Leaders with stories<br>worth sharing</h2>
+            <div class="for-grid">
+                <div class="for-card">
+                    <h3>Executives & Founders</h3>
+                    <p>You've built something remarkable. Now it's time to document your insights and establish yourself as a thought leader in your industry.</p>
+                </div>
+                <div class="for-card">
+                    <h3>Industry Experts</h3>
+                    <p>Years of experience have given you unique perspectives. Transform that knowledge into a book that positions you as the authority.</p>
+                </div>
+                <div class="for-card">
+                    <h3>Aspiring Authors</h3>
+                    <p>You know you have a book inside you, but don't know where to start. Learn the proven process to go from blank page to published author.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- What You'll Learn -->
+    <section class="learn-section">
+        <div class="container">
+            <div class="section-label">Workshop Content</div>
+            <h2>What you'll master</h2>
+            <ul class="learn-list">
+                <li>How to identify your book's core message and unique angle that sets you apart</li>
+                <li>The essential structure every successful leadership book follows</li>
+                <li>Proven techniques to overcome writer's block and maintain momentum</li>
+                <li>Strategies for balancing writing with your demanding schedule</li>
+                <li>The publishing landscape: traditional vs. self-publishing explained</li>
+                <li>How to build an audience before, during, and after writing</li>
+            </ul>
+        </div>
+    </section>
+
+    <!-- Details -->
+    <section class="details-section">
+        <div class="container">
+            <div class="section-label">Details</div>
+            <h2>Workshop Information</h2>
+            <div class="details-grid">
+                <div class="detail-item">
+                    <div class="detail-icon">📅</div>
+                    <h3>When</h3>
+                    <p>Saturday, January 17, 2026<br>9:00 AM – 1:00 PM</p>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">📍</div>
+                    <h3>Where</h3>
+                    <p>353 Festival Street, First Floor<br>Hatfield, Pretoria</p>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">👥</div>
+                    <h3>Format</h3>
+                    <p>Interactive & hands-on</p>
+                </div>
+                <div class="detail-item">
+                    <div class="detail-icon">🎁</div>
+                    <h3>Includes</h3>
+                    <p>Workbook & resources</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing-section" id="pricing">
+        <div class="container">
+            <div class="section-label">Investment</div>
+            <h2>Choose your path</h2>
+            <p style="text-align: center; color: var(--accent); font-weight: 600; font-size: 1.125rem; margin-top: 1rem;">🔥 Only 3 spots remaining – Register now before they're gone!</p>
+            <div class="pricing-grid">
+                <!-- Essential Tier -->
+                <div class="pricing-card">
+                    <div class="price-header">
+                        <h3>Essential</h3>
+                        <div class="price">
+                            <span class="currency">R</span>
+                            <span class="amount">350</span>
+                        </div>
+                    </div>
+                    <ul class="features-list">
+                        <li>Half-day workshop access (9 AM - 1 PM)</li>
+                        <li>Comprehensive workbook & templates</li>
+                        <li>Book outline framework</li>
+                        <li>Group Q&A sessions</li>
+                        <li>Writing resources toolkit</li>
+                        <li>Workshop recording (30 days)</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/8x29AV8bCaL7dyr8fmasg0b" class="pricing-button">Get Started</a>
+                </div>
+
+                <!-- Professional Tier -->
+                <div class="pricing-card featured">
+                    <div class="popular-badge">Most Popular</div>
+                    <div class="price-header">
+                        <h3>Professional</h3>
+                        <div class="price">
+                            <span class="currency">R</span>
+                            <span class="amount">750</span>
+                        </div>
+                    </div>
+                    <ul class="features-list">
+                        <li><strong>Everything in Essential, plus:</strong></li>
+                        <li><strong>1-hour private consultation</strong> (within 2 weeks)</li>
+                        <li>Personalized book concept review</li>
+                        <li>Chapter-by-chapter outline feedback</li>
+                        <li>Publisher pitch template</li>
+                        <li>30-day email support</li>
+                        <li>Exclusive author community access</li>
+                    </ul>
+                    <a href="https://buy.stripe.com/cNi6oJ4Zq1ax7a30MUasg0a" class="pricing-button">Start Writing</a>
+                </div>
+
+                <!-- Executive Tier -->
+                <div class="pricing-card premium">
+                    <div class="price-header">
+                        <h3>Executive</h3>
+                        <div class="price">
+                            <span class="currency">R</span>
+                            <span class="amount">1,000</span>
+                        </div>
+                    </div>
+                    <ul class="features-list">
+                        <li><strong>Everything in Professional, plus:</strong></li>
+                        <li><strong>Extended 90-minute strategy session</strong></li>
+                        <li>Ghost-written sample chapter (1,500 words)</li>
+                        <li>Comprehensive market analysis</li>
+                        <li>Publishing pathway consultation</li>
+                        <li>90-day priority email & voice support</li>
+                        <li>Introduction to literary agents/publishers</li>
+                        <li>Personal brand integration strategy</li>
+                    </ul>
+                    <a href="https://book.stripe.com/00w9AVfE42eBeCv67easg09" class="pricing-button">Go Premium</a>
+                </div>
+            </div>
+            <div class="guarantee-box">
+                <div class="guarantee-icon">🛡️</div>
+                <div class="guarantee-content">
+                    <h3>100% Money-Back Guarantee</h3>
+                    <p>Attend the workshop. If you don't feel it delivered value, get a full refund within 7 days. No questions asked. Your success is our priority.</p>
+                </div>
+            </div>
+            <p class="pricing-note">All prices in South African Rand. Payment plans available upon request.</p>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials-section">
+        <div class="container">
+            <div class="section-label">Success Stories</div>
+            <h2>What past attendees say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <p class="testimonial-text">"What an incredible opportunity it was to engage in a session with Ralph, regarding my exciting new book project. My sincere appreciation goes to Ralph for his invaluable insights."</p>
+                    <div class="testimonial-author">
+                        <strong>Tsietsi Jeffrey Leokaoke</strong>
+                        <span>Author</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <p class="testimonial-text">"Working with Ralph transformed how I communicate my expertise. In just one strategy session, I learned to craft a compelling author story that now attracts my ideal coaching clients effortlessly. The workshop helped me understand the importance of client connection and that my story is what clients will connect to when writing a book."</p>
+                    <div class="testimonial-author">
+                        <strong>Tinyeko Motileni</strong>
+                        <span>Coach</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <p class="testimonial-text">"I enjoyed the way you took me through the steps of book writing and helped me to brainstorm ideas. As you asked me viewpoint questions, I was able to determine what I really wanted to write. You have a very cool, calm and collected manner about you which makes it easy to work and make progress."</p>
+                    <div class="testimonial-author">
+                        <strong>Eden Padayachee, PhD</strong>
+                        <span>Author</span>
+                    </div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="quote-mark">"</div>
+                    <p class="testimonial-text">"Had an insightful, valuable session with Ralph filled with guidance on writing and publishing a book. Definitely worth it. Great job Ralph!"</p>
+                    <div class="testimonial-author">
+                        <strong>Shawn Naidu</strong>
+                        <span>CEO & Founder</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq-section">
+        <div class="container">
+            <div class="section-label">Questions?</div>
+            <h2>Everything you need to know</h2>
+            <div class="faq-container">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do I need writing experience to attend?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Not at all! This workshop is designed specifically for leaders who may have never written professionally. We focus on getting your ideas out, not on literary technique. If you can speak about your expertise, you can write about it.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What if I don't have a book idea yet?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Perfect! Part of the workshop helps you identify your unique angle and core message. Many attendees come without a concrete idea and leave with a clear book concept.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How much time will I need to commit after the workshop?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>That depends on your goals, but most attendees dedicate 5-10 hours per week. We'll teach you strategies to write efficiently alongside your busy schedule.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Will this be recorded?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! All attendees receive 30-day access to the workshop recording so you can revisit key concepts and lessons.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What's the difference between the tiers?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>All tiers include the workshop. Professional adds 1-on-1 coaching and extended support. Executive includes everything plus a ghost-written sample chapter, market analysis, and publisher introductions—perfect for busy executives who want the full done-with-you experience.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>What if I can't make it on the day?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>We understand schedules change. If you can't attend live, you'll still receive the recording and workbook. However, the interactive elements and networking are most valuable when attending live.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Is there a money-back guarantee?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! If you attend the workshop and feel it didn't deliver value, we'll refund your investment within 7 days—no questions asked. Your success is our priority.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Final CTA -->
+    <section class="final-cta">
+        <div class="container">
+            <h2>Your book starts here</h2>
+            <p style="font-size: 1.25rem; max-width: 700px; margin: 0 auto;">Join us on January 17th and take the first concrete step toward becoming a published author. Limited spots available.</p>
+            <a href="#pricing" class="cta-button">Register Now</a>
+        </div>
+    </section>
+
+    <script>
+        // Countdown Timer
+        function updateCountdown() {
+            const workshopDate = new Date('2026-01-17T09:00:00+02:00').getTime(); // 9 AM SAST
+            const now = new Date().getTime();
+            const distance = workshopDate - now;
+
+            if (distance < 0) {
+                document.getElementById('countdown').innerHTML = '<p style="font-size: 2rem; color: var(--accent);">Workshop has started!</p>';
+                return;
+            }
+
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // Update countdown every second
+        updateCountdown();
+        setInterval(updateCountdown, 1000);
+
+        // FAQ Accordion
+        document.querySelectorAll('.faq-question').forEach(question => {
+            question.addEventListener('click', function() {
+                const faqItem = this.parentElement;
+                const isActive = faqItem.classList.contains('active');
+                
+                // Close all FAQ items
+                document.querySelectorAll('.faq-item').forEach(item => {
+                    item.classList.remove('active');
+                });
+                
+                // Open clicked item if it wasn't active
+                if (!isActive) {
+                    faqItem.classList.add('active');
+                }
+            });
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
